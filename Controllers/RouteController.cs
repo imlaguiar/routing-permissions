@@ -35,16 +35,16 @@ namespace routing.Controllers
             await _db.Rotas.AddRangeAsync(rotas);
 
             //funcionalidades rota dashboard
-            var graficoDoacoes = new Funcionalidade { Descricao = "DoacoesDashboard", ActionName = "TesteTemAcesso" };
-            var graficoCadastros = new Funcionalidade { Descricao = "CadastrosDashboard" };
+            var graficoDoacoes = new Funcionalidade { Descricao = "DoacoesDashboard", ActionName = "RelatorioDoacoes" };
+            var graficoCadastros = new Funcionalidade { Descricao = "CadastrosDashboard", ActionName = "RelatorioCadastros" };
 
             //funcionalidades rota campanhas
-            var criarCampanha = new Funcionalidade { Descricao = "CriacaoCampanha" };
-            var listarCampanhas = new Funcionalidade { Descricao = "ListarCampanhas" };
+            var criarCampanha = new Funcionalidade { Descricao = "CriacaoCampanha", ActionName = "CriarCampanha" };
+            var listarCampanhas = new Funcionalidade { Descricao = "ListarCampanhas", ActionName = "ListarCampanhas" };
 
             //funcionalidades rota cadastros
-            var modificarCadastro = new Funcionalidade { Descricao = "ModificarCadastro", ActionName = "TesteNaoTemAcesso" };
-            var apagarCadastro = new Funcionalidade { Descricao = "ApagarCadastro" };
+            var modificarCadastro = new Funcionalidade { Descricao = "ModificarCadastro", ActionName = "ModificarCadastro" };
+            var apagarCadastro = new Funcionalidade { Descricao = "ApagarCadastro", ActionName = "ApagarCadastro" };
 
             await _db.Funcionalidades.AddRangeAsync(new List<Funcionalidade>{
                 graficoDoacoes,
@@ -106,6 +106,7 @@ namespace routing.Controllers
                 resultado.Add(new RotasFuncionalidadesViewModel
                 {
                     IdRota = rota.Id,
+                    NomeRota = rota.Descricao,
                     Funcionalidades = (
                         from rf in _db.RotasFuncionalidades
                         join f in _db.Funcionalidades on rf.IdFuncionalidade equals f.Id
@@ -127,6 +128,7 @@ namespace routing.Controllers
                 resultado.Add(new RotasFuncionalidadesViewModel
                 {
                     IdRota = rota.Id,
+                    NomeRota = rota.Descricao,
                     Funcionalidades = (
                         from rf in _db.RotasFuncionalidades
                         join f in _db.Funcionalidades on rf.IdFuncionalidade equals f.Id
@@ -150,6 +152,7 @@ namespace routing.Controllers
                 resultado.Add(new RotasFuncionalidadesViewModel
                 {
                     IdRota = rota.Id,
+                    NomeRota = rota.Descricao,
                     Funcionalidades = (
                         from rf in _db.RotasFuncionalidades
                         join f in _db.Funcionalidades on rf.IdFuncionalidade equals f.Id
@@ -186,16 +189,40 @@ namespace routing.Controllers
             return Ok();
         }
 
-        [HttpGet("TesteTemAcesso")]
-        public async Task<string> TesteTemAcesso()
+        [HttpGet("doacoes/relatorio")]
+        public async Task<string> RelatorioDoacoes()
         {
-            return "tem acesso";
+            return "relatório doações";
         }
 
-        [HttpGet("TesteNaoTemAcesso")]
-        public async Task<string> TesteNaoTemAcesso()
+        [HttpGet("cadastros/relatorio")]
+        public async Task<string> RelatorioCadastros()
         {
-            return "Não tem acesso";
+            return "relatório cadastros";
+        }
+
+        [HttpGet("campanha/criar")]
+        public async Task<string> CriarCampanha()
+        {
+            return "criação de campanha";
+        }
+
+        [HttpGet("campanha/listar")]
+        public async Task<string> ListarCampanhas()
+        {
+            return "lista de campanhas";
+        }
+
+        [HttpGet("cadastros/modificar")]
+        public async Task<string> ModificarCadastro()
+        {
+            return "modificação de cadastros";
+        }
+
+        [HttpGet("cadastros/apagar")]
+        public async Task<string> ApagarCadastro()
+        {
+            return "removção de cadastros";
         }
     }
 }

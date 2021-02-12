@@ -15,7 +15,7 @@ namespace routing
             JsonResult jsonResult;
             base.OnActionExecuting(context);
             // if(context.HttpContext.User.Identity.IsAuthenticated)
-            var isAuthenticated = false;
+            var isAuthenticated = true;
             if(isAuthenticated)
             {
                 var _db = context.HttpContext.RequestServices.GetService(typeof(DbConetxt)) as DbConetxt;
