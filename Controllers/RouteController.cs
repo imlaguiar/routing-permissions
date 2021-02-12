@@ -35,7 +35,7 @@ namespace routing.Controllers
             await _db.Rotas.AddRangeAsync(rotas);
 
             //funcionalidades rota dashboard
-            var graficoDoacoes = new Funcionalidade { Descricao = "DoacoesDashboard" };
+            var graficoDoacoes = new Funcionalidade { Descricao = "DoacoesDashboard", ActionName = "TesteTemAcesso" };
             var graficoCadastros = new Funcionalidade { Descricao = "CadastrosDashboard" };
 
             //funcionalidades rota campanhas
@@ -43,7 +43,7 @@ namespace routing.Controllers
             var listarCampanhas = new Funcionalidade { Descricao = "ListarCampanhas" };
 
             //funcionalidades rota cadastros
-            var modificarCadastro = new Funcionalidade { Descricao = "ModificarCadastro" };
+            var modificarCadastro = new Funcionalidade { Descricao = "ModificarCadastro", ActionName = "TesteNaoTemAcesso" };
             var apagarCadastro = new Funcionalidade { Descricao = "ApagarCadastro" };
 
             await _db.Funcionalidades.AddRangeAsync(new List<Funcionalidade>{
